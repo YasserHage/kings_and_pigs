@@ -11,7 +11,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var parent: set = setParent
 
 func enter() -> void:
-	sprite.get_parent().enableSprite(sprite)
+	refreshSprite()
 	playAnimation()
 
 func exit() -> void:
@@ -29,5 +29,8 @@ func processPhysics(delta: float) -> State:
 func setParent(_parent):
 	parent = _parent
 
+func refreshSprite():
+	sprite.get_parent().enableSprite(sprite)
+	
 func playAnimation():
 	parent.animations.play(animation_name + "_" + direction)
