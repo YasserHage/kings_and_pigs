@@ -5,8 +5,13 @@ var idle_state: State
 @export
 var jump_state: State
 @export
+var attack_sprite: Sprite2D
+@export
+var attack_animation_name: String
+@export
 var speed: int
 var animation_root_name: String = ""
+var isAttacking: bool = false
 
 func enter() -> void:
 	if animation_root_name == "":
@@ -14,7 +19,13 @@ func enter() -> void:
 	handleMovement()
 	super()
 	
+func processInput(event: InputEvent) -> State:
+	if Input.is_action_pressed("attack"):
+		_attack()
+	return null
+	
 func processFrame(delta: float) -> State:
+	_verifyAttackFinished()
 	handleMovement()
 	if Input.is_action_just_pressed("jump") &&  parent.is_on_floor():
 		return jump_state
@@ -42,6 +53,16 @@ func handleMovement() -> void:
 		
 	parent.velocity.x = 0;
 
+func _attack() -> void:
+	isAttacking = true
+	sprite.get_parent().enableSprite(attack_sprite)
+	parent.animations.play(attack_animation_name + "_" + direction)
+	
+func _verifyAttackFinished() -> void:
+	if isAttacking && !parent.animations.is_playing():
+		isAttacking = false
+		reset()
+		
 func _verifyIdle() -> bool:
 	return !(Input.is_action_just_pressed("ui_right") || Input.is_action_just_pressed("ui_right"))
 

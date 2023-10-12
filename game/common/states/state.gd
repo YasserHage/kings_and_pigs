@@ -26,11 +26,15 @@ func processFrame(delta: float) -> State:
 func processPhysics(delta: float) -> State:
 	return null
 
-func setParent(_parent):
+func setParent(_parent) -> void:
 	parent = _parent
 
-func refreshSprite():
+func refreshSprite() -> void:
 	sprite.get_parent().enableSprite(sprite)
 	
-func playAnimation():
+func playAnimation() -> void:
 	parent.animations.play(animation_name + "_" + direction)
+
+func reset() -> void:
+	refreshSprite()
+	playAnimation()
