@@ -27,6 +27,7 @@ func processPhysics(delta: float) -> void:
 func changeState(newState: State) -> void:
 	if current_state:
 		current_state.exit()
-		
+		newState.direction = current_state.direction
+	
 	current_state = newState
 	current_state.enter()

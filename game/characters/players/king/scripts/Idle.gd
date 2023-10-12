@@ -6,7 +6,6 @@ var walk_state: State
 func enter() -> void:
 	super()
 	parent.velocity.x = 0
-	print("idle")
 
 func processInput(event: InputEvent) -> State:
 	if event.is_action_pressed("ui_left") or event.is_action_pressed("ui_right"):

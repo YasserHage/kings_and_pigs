@@ -1,27 +1,20 @@
 extends State
 
-@onready
-var idle_timer: Timer = $"../../IdleTimer"
-
 @export
 var idle_state: State
 @export
 var speed: int
-
-var is_idle: bool = false
+var animation_root_name: String = ""
 
 func enter() -> void:
+	if animation_root_name == "":
+		animation_root_name = animation_name
+	handleMovement()
 	super()
-	handleMovement()
-	print("walk")
-	
-func processInput(event: InputEvent) -> State:
-	handleMovement()
-	return null
 	
 func processFrame(delta: float) -> State:
-	if is_idle && parent.velocity.x == 0:
-		is_idle = false
+	handleMovement()
+	if parent.velocity.x == 0 && _verifyIdle():
 		return idle_state
 	return null
 	
@@ -34,16 +27,23 @@ func processPhysics(delta: float) -> State:
 	return null
 	
 func handleMovement() -> void:
+	var currentDirection = direction;
 	if Input.is_action_pressed("ui_left"):
+		direction = "left"
+		_verifyAnimation(currentDirection)
 		parent.velocity.x = -speed;
 		return
 	if Input.is_action_pressed("ui_right"):
+		direction = "right"
+		_verifyAnimation(currentDirection)
 		parent.velocity.x = speed;
 		return
+		
 	parent.velocity.x = 0;
-	idle_timer.start()
 
+func _verifyIdle() -> bool:
+	return !(Input.is_action_just_pressed("ui_right") || Input.is_action_just_pressed("ui_right"))
 
-func _on_idle_timer_timeout():
-	is_idle = true
-	
+func _verifyAnimation(currentDirection):
+	if direction != currentDirection:
+		playAnimation()

@@ -7,6 +7,7 @@ var state_machine = $StateMachine
 
 func  _ready():
 	state_machine.init(self)
+	animations.stop()
 	
 func _unhandled_input(event):
 	state_machine.processInput(event)
