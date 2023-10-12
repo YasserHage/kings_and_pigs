@@ -478,19 +478,22 @@ direction = "right"
 animation_name = "idle"
 sprite = NodePath("../../Sprites/IdleSprite")
 
-[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "sprite")]
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "sprite")]
 script = ExtResource("5_sp6pa")
 idle_state = NodePath("../Idle")
+jump_state = NodePath("../Jump")
 speed = 200
 direction = "right"
 animation_name = "walk"
 sprite = NodePath("../../Sprites/WalkSprite")
 
-[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "fall_sprite", "sprite")]
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "walk_state", "fall_sprite", "sprite")]
 script = ExtResource("9_86cde")
 idle_state = NodePath("../Idle")
+walk_state = NodePath("../Walk")
 fall_sprite = NodePath("../../Sprites/FallSprite")
-jump_power = 500
+speed = 200
+jump_power = 350
 direction = "right"
 animation_name = "jump"
 sprite = NodePath("../../Sprites/JumpSprite")

@@ -3,6 +3,8 @@ extends State
 @export
 var idle_state: State
 @export
+var jump_state: State
+@export
 var speed: int
 var animation_root_name: String = ""
 
@@ -14,6 +16,8 @@ func enter() -> void:
 	
 func processFrame(delta: float) -> State:
 	handleMovement()
+	if Input.is_action_just_pressed("jump") &&  parent.is_on_floor():
+		return jump_state
 	if parent.velocity.x == 0 && _verifyIdle():
 		return idle_state
 	return null
@@ -21,9 +25,6 @@ func processFrame(delta: float) -> State:
 func processPhysics(delta: float) -> State:
 	parent.velocity.y += gravity * delta
 	parent.move_and_slide()
-	
-	if !parent.is_on_floor():
-		return null
 	return null
 	
 func handleMovement() -> void:
