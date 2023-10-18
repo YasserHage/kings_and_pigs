@@ -1,13 +1,12 @@
-class_name King extends CharacterBody2D
+class_name Character extends CharacterBody2D
 
-@onready
-var animations = $AnimationPlayer
-@onready
-var state_machine = $StateMachine
+@export
+var animations: AnimationPlayer
+@export
+var state_machine: StateMachine
 
 func  _ready():
 	state_machine.init(self)
-	animations.stop()
 	
 func _unhandled_input(event):
 	state_machine.processInput(event)

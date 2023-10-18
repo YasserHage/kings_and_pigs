@@ -1,10 +1,10 @@
-extends Node
+class_name StateMachine extends Node
 
 @export
 var starting_state: State
 var current_state: State
 
-func init(parent: King) -> void:
+func init(parent) -> void:
 	for child in get_children():
 		child.setParent(parent)
 	changeState(starting_state)
@@ -27,7 +27,7 @@ func processPhysics(delta: float) -> void:
 func changeState(newState: State) -> void:
 	if current_state:
 		current_state.exit()
-		newState.direction = current_state.direction
+		newState.setDirection(current_state.getDirection())
 	
 	current_state = newState
 	current_state.enter()

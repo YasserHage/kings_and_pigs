@@ -1,4 +1,4 @@
-extends Node2D
+class_name SpriteController extends Node2D
 
 
 func enableSprite(sprite: Sprite2D):

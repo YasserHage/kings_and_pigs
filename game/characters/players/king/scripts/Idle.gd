@@ -1,4 +1,4 @@
-extends State
+extends CharacterState
 
 @export
 var walk_state: State

@@ -1,0 +1,130 @@
+[gd_scene load_steps=10 format=3 uid="uid://bsaap1c3jno85"]
+
+[ext_resource type="Texture2D" uid="uid://b6j6k6l7ljp6c" path="res://assets/characters/enemies/king_pig/king_pig_idle_sprite.png" id="1_abfk2"]
+[ext_resource type="Script" path="res://game/characters/scripts/character.gd" id="1_re13u"]
+[ext_resource type="Script" path="res://game/common/controllers/sprite_controller.gd" id="2_5u5nd"]
+[ext_resource type="Script" path="res://game/common/states/state_machine.gd" id="3_oqvcq"]
+[ext_resource type="Script" path="res://game/characters/enemies/king_pig/scripts/idle.gd" id="5_dqg2h"]
+
+[sub_resource type="Animation" id="Animation_w0ccw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteController/IdleSprite:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteController/IdleSprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteController/IdleSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_jqkb6"]
+resource_name = "idle_left"
+length = 2.3
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteController/IdleSprite:flip_h")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteController/IdleSprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteController/IdleSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t4hkd"]
+_data = {
+"RESET": SubResource("Animation_w0ccw"),
+"idle_left": SubResource("Animation_jqkb6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qr4xx"]
+size = Vector2(14, 20)
+
+[node name="KingPig" type="CharacterBody2D" node_paths=PackedStringArray("animations", "state_machine")]
+collision_layer = 4
+script = ExtResource("1_re13u")
+animations = NodePath("AnimationPlayer")
+state_machine = NodePath("StateMachine")
+
+[node name="SpriteController" type="Node2D" parent="."]
+position = Vector2(0, -14)
+script = ExtResource("2_5u5nd")
+
+[node name="IdleSprite" type="Sprite2D" parent="SpriteController"]
+texture = ExtResource("1_abfk2")
+hframes = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_t4hkd")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -10)
+shape = SubResource("RectangleShape2D_qr4xx")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("3_oqvcq")
+starting_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("sprite")]
+script = ExtResource("5_dqg2h")
+animation_name = "idle"
+direction = "left"
+sprite = NodePath("../../SpriteController/IdleSprite")
