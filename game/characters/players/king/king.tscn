@@ -592,6 +592,14 @@ libraries = {
 position = Vector2(-8, -12.5)
 shape = SubResource("RectangleShape2D_k8dkm")
 
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="Area" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(-8, -12.5)
+shape = SubResource("RectangleShape2D_k8dkm")
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("8_5gh6x")
 starting_state = NodePath("Idle")

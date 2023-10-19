@@ -1,12 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://dcpi4uv4o4fes"]
+[gd_scene load_steps=19 format=3 uid="uid://dcpi4uv4o4fes"]
 
 [ext_resource type="Texture2D" uid="uid://b6j6k6l7ljp6c" path="res://assets/characters/enemies/king_pig/king_pig_idle_sprite.png" id="1_abfk2"]
 [ext_resource type="Script" path="res://game/characters/enemies/king_pig/scripts/king_pig.gd" id="1_kerpc"]
 [ext_resource type="Script" path="res://game/common/controllers/sprite_controller.gd" id="2_5u5nd"]
-[ext_resource type="Script" path="res://game/common/states/state_machine.gd" id="3_oqvcq"]
 [ext_resource type="Texture2D" uid="uid://b3urawu4rebn4" path="res://assets/characters/enemies/king_pig/king_pig_run_sprite.png" id="4_o1jqo"]
 [ext_resource type="Script" path="res://game/characters/enemies/king_pig/scripts/idle.gd" id="5_dqg2h"]
+[ext_resource type="Script" path="res://game/characters/enemies/king_pig/scripts/king_pig_state_machine.gd" id="5_r65xj"]
 [ext_resource type="Script" path="res://game/characters/enemies/king_pig/scripts/patrol.gd" id="6_63f0r"]
+[ext_resource type="Script" path="res://game/characters/enemies/king_pig/scripts/chase.gd" id="8_fgqie"]
 
 [sub_resource type="Animation" id="Animation_w0ccw"]
 length = 0.001
@@ -82,6 +83,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SightRange/Range:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(55, -38)]
+}
 
 [sub_resource type="Animation" id="Animation_76442"]
 resource_name = "run_left"
@@ -123,6 +136,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SightRange/Range:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-55, -38)]
 }
 
 [sub_resource type="Animation" id="Animation_o5x6t"]
@@ -166,6 +191,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SightRange/Range:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(55, -38)]
+}
 
 [sub_resource type="Animation" id="Animation_atsgf"]
 resource_name = "walk_left"
@@ -207,6 +244,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SightRange/Range:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-55, -38)]
 }
 
 [sub_resource type="Animation" id="Animation_wfe5k"]
@@ -250,6 +299,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(2, 0)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SightRange/Range:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(55, -38)]
+}
 
 [sub_resource type="Animation" id="Animation_l1jaj"]
 resource_name = "idle_left"
@@ -291,6 +352,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SightRange/Range:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-55, -38)]
 }
 
 [sub_resource type="Animation" id="Animation_gshle"]
@@ -334,6 +407,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SightRange/Range:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(55, -38)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t4hkd"]
 _data = {
@@ -349,8 +434,12 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qr4xx"]
 size = Vector2(14, 20)
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eyhab"]
+radius = 5.42857
+
 [node name="KingPig" type="CharacterBody2D" node_paths=PackedStringArray("animations", "state_machine")]
 collision_layer = 4
+collision_mask = 33
 script = ExtResource("1_kerpc")
 animations = NodePath("AnimationPlayer")
 state_machine = NodePath("StateMachine")
@@ -360,11 +449,11 @@ position = Vector2(0, -14)
 script = ExtResource("2_5u5nd")
 
 [node name="IdleSprite" type="Sprite2D" parent="SpriteController"]
+visible = false
 texture = ExtResource("1_abfk2")
 hframes = 12
 
 [node name="WalkSprite" type="Sprite2D" parent="SpriteController"]
-visible = false
 texture = ExtResource("4_o1jqo")
 flip_h = true
 hframes = 6
@@ -379,8 +468,19 @@ libraries = {
 position = Vector2(1, -10)
 shape = SubResource("RectangleShape2D_qr4xx")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
-script = ExtResource("3_oqvcq")
+[node name="SightRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Range" type="CollisionShape2D" parent="SightRange"]
+position = Vector2(55, -38)
+rotation = 1.5708
+scale = Vector2(7, 7)
+shape = SubResource("CapsuleShape2D_eyhab")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("chase_state", "starting_state")]
+script = ExtResource("5_r65xj")
+chase_state = NodePath("Chase")
 starting_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("patrol", "timer", "sprite")]
@@ -397,8 +497,19 @@ one_shot = true
 
 [node name="Patrol" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "sprite")]
 script = ExtResource("6_63f0r")
-speed = 100
+speed = 120
 idle_state = NodePath("../Idle")
 animation_name = "walk"
 direction = "left"
 sprite = NodePath("../../SpriteController/WalkSprite")
+
+[node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "sprite")]
+script = ExtResource("8_fgqie")
+speed = 200
+idle_state = NodePath("../Idle")
+animation_name = "run"
+direction = "left"
+sprite = NodePath("../../SpriteController/WalkSprite")
+
+[connection signal="area_entered" from="SightRange" to="StateMachine" method="_on_sight_range_area_entered"]
+[connection signal="area_exited" from="SightRange" to="StateMachine/Chase" method="_on_sight_range_area_exited"]

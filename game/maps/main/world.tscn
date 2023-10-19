@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dn12m33b6s3kq"]
+[gd_scene load_steps=7 format=3 uid="uid://dn12m33b6s3kq"]
 
 [ext_resource type="Texture2D" uid="uid://d0my64sa6uy66" path="res://assets/tiles/terrain_tileset.png" id="1_p428g"]
 [ext_resource type="PackedScene" uid="uid://bwfatf7epxers" path="res://game/characters/players/king/king.tscn" id="2_lbny7"]
@@ -1594,6 +1594,10 @@ terrain_set_0/terrain_1/name = "Background"
 terrain_set_0/terrain_1/color = Color(0.262745, 0.588235, 1, 1)
 sources/0 = SubResource("TileSetAtlasSource_g38c8")
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_0bn7w"]
+a = Vector2(0, -14)
+b = Vector2(0, 13)
+
 [node name="World" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -1629,3 +1633,14 @@ visible = false
 [node name="Path" type="Line2D" parent="Paths"]
 points = PackedVector2Array(575, 89, 745, 89)
 width = 2.0
+
+[node name="Collisions" type="Node2D" parent="."]
+
+[node name="EnemyCollisions" type="StaticBody2D" parent="Collisions"]
+position = Vector2(563, 86)
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/EnemyCollisions"]
+position = Vector2(0, -4)
+shape = SubResource("SegmentShape2D_0bn7w")
