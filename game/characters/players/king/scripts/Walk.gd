@@ -10,12 +10,9 @@ var attack_sprite: Sprite2D
 var attack_animation_name: String
 @export
 var speed: int
-var animation_root_name: String = ""
 var isAttacking: bool = false
 
 func enter() -> void:
-	if animation_root_name == "":
-		animation_root_name = animation_name
 	handleMovement()
 	super()
 	
