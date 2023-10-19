@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dcpi4uv4o4fes"]
+[gd_scene load_steps=17 format=3 uid="uid://dcpi4uv4o4fes"]
 
 [ext_resource type="Texture2D" uid="uid://b6j6k6l7ljp6c" path="res://assets/characters/enemies/king_pig/king_pig_idle_sprite.png" id="1_abfk2"]
 [ext_resource type="Script" path="res://game/characters/enemies/king_pig/scripts/king_pig.gd" id="1_kerpc"]
 [ext_resource type="Script" path="res://game/common/controllers/sprite_controller.gd" id="2_5u5nd"]
 [ext_resource type="Script" path="res://game/common/states/state_machine.gd" id="3_oqvcq"]
+[ext_resource type="Texture2D" uid="uid://b3urawu4rebn4" path="res://assets/characters/enemies/king_pig/king_pig_run_sprite.png" id="4_o1jqo"]
 [ext_resource type="Script" path="res://game/characters/enemies/king_pig/scripts/idle.gd" id="5_dqg2h"]
 [ext_resource type="Script" path="res://game/characters/enemies/king_pig/scripts/patrol.gd" id="6_63f0r"]
 
@@ -45,12 +46,216 @@ tracks/2/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SpriteController/WalkSprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SpriteController/WalkSprite:offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SpriteController/WalkSprite:flip_h")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
-[sub_resource type="Animation" id="Animation_jqkb6"]
-resource_name = "idle_left"
-length = 2.3
+[sub_resource type="Animation" id="Animation_76442"]
+resource_name = "run_left"
+length = 1.2
 loop_mode = 1
 step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteController/WalkSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteController/WalkSprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteController/WalkSprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o5x6t"]
+resource_name = "run_right"
+length = 1.2
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteController/WalkSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteController/WalkSprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteController/WalkSprite:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_atsgf"]
+resource_name = "walk_left"
+length = 1.8
+loop_mode = 1
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteController/WalkSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteController/WalkSprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteController/WalkSprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wfe5k"]
+resource_name = "walk_right"
+length = 1.8
+loop_mode = 1
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteController/WalkSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteController/WalkSprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteController/WalkSprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l1jaj"]
+resource_name = "idle_left"
+length = 3.6
+loop_mode = 1
+step = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -82,17 +287,17 @@ tracks/2/path = NodePath("SpriteController/IdleSprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2),
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3, 3.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 }
 
-[sub_resource type="Animation" id="Animation_fatle"]
+[sub_resource type="Animation" id="Animation_gshle"]
 resource_name = "idle_right"
-length = 2.3
+length = 3.6
 loop_mode = 1
-step = 0.2
+step = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -124,7 +329,7 @@ tracks/2/path = NodePath("SpriteController/IdleSprite:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2),
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9, 1.2, 1.5, 1.8, 2.1, 2.4, 2.7, 3, 3.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
@@ -133,8 +338,12 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t4hkd"]
 _data = {
 "RESET": SubResource("Animation_w0ccw"),
-"idle_left": SubResource("Animation_jqkb6"),
-"idle_right": SubResource("Animation_fatle")
+"idle_left": SubResource("Animation_l1jaj"),
+"idle_right": SubResource("Animation_gshle"),
+"run_left": SubResource("Animation_76442"),
+"run_right": SubResource("Animation_o5x6t"),
+"walk_left": SubResource("Animation_atsgf"),
+"walk_right": SubResource("Animation_wfe5k")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qr4xx"]
@@ -153,6 +362,12 @@ script = ExtResource("2_5u5nd")
 [node name="IdleSprite" type="Sprite2D" parent="SpriteController"]
 texture = ExtResource("1_abfk2")
 hframes = 12
+
+[node name="WalkSprite" type="Sprite2D" parent="SpriteController"]
+visible = false
+texture = ExtResource("4_o1jqo")
+flip_h = true
+hframes = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 speed_scale = 2.3
@@ -177,13 +392,13 @@ direction = "left"
 sprite = NodePath("../../SpriteController/IdleSprite")
 
 [node name="Timer" type="Timer" parent="StateMachine/Idle"]
-wait_time = 2.3
+wait_time = 3.6
 one_shot = true
 
 [node name="Patrol" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "sprite")]
 script = ExtResource("6_63f0r")
 speed = 100
 idle_state = NodePath("../Idle")
-animation_name = "idle"
+animation_name = "walk"
 direction = "left"
-sprite = NodePath("../../SpriteController/IdleSprite")
+sprite = NodePath("../../SpriteController/WalkSprite")

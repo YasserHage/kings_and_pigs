@@ -558,7 +558,6 @@ position = Vector2(0, -15)
 script = ExtResource("2_p8w1e")
 
 [node name="IdleSprite" type="Sprite2D" parent="SpriteController"]
-visible = false
 texture = ExtResource("1_dnid4")
 offset = Vector2(-16, 0)
 flip_h = true
@@ -580,6 +579,7 @@ visible = false
 texture = ExtResource("6_inhpl")
 
 [node name="AttackSprite" type="Sprite2D" parent="SpriteController"]
+visible = false
 texture = ExtResource("7_ef28f")
 hframes = 3
 
