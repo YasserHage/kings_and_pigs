@@ -1,9 +1,10 @@
-[gd_scene load_steps=27 format=3 uid="uid://dcpi4uv4o4fes"]
+[gd_scene load_steps=28 format=3 uid="uid://dcpi4uv4o4fes"]
 
 [ext_resource type="Texture2D" uid="uid://b6j6k6l7ljp6c" path="res://assets/characters/enemies/king_pig/king_pig_idle_sprite.png" id="1_abfk2"]
 [ext_resource type="Script" path="res://game/characters/enemies/king_pig/scripts/king_pig.gd" id="1_kerpc"]
 [ext_resource type="Script" path="res://game/common/controllers/sprite_controller.gd" id="2_5u5nd"]
 [ext_resource type="Script" path="res://game/common/components/health_component.gd" id="2_rjw3w"]
+[ext_resource type="PackedScene" uid="uid://ktdtphi6aw0h" path="res://game/common/components/health_bar/health_bar.tscn" id="3_slv64"]
 [ext_resource type="Texture2D" uid="uid://b3urawu4rebn4" path="res://assets/characters/enemies/king_pig/king_pig_run_sprite.png" id="4_o1jqo"]
 [ext_resource type="Script" path="res://game/characters/enemies/king_pig/scripts/idle.gd" id="5_dqg2h"]
 [ext_resource type="Script" path="res://game/characters/enemies/king_pig/scripts/king_pig_state_machine.gd" id="5_r65xj"]
@@ -755,9 +756,15 @@ script = ExtResource("1_kerpc")
 animations = NodePath("AnimationPlayer")
 state_machine = NodePath("StateMachine")
 
+[node name="HealthBarComponent" parent="." instance=ExtResource("3_slv64")]
+offset_left = -15.0
+offset_top = -26.0
+offset_right = 15.0
+offset_bottom = -22.0
+
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("2_rjw3w")
-max_health = 10
+max_health = 50
 
 [node name="SpriteController" type="Node2D" parent="."]
 position = Vector2(0, -14)
@@ -789,6 +796,7 @@ position = Vector2(1, -10)
 shape = SubResource("RectangleShape2D_276l7")
 
 [node name="HitBoxComponent" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("8_evr8b")
@@ -859,6 +867,8 @@ sprite = NodePath("../../SpriteController/WalkSprite")
 
 [node name="AttackCooldown" type="Timer" parent="StateMachine/Chase"]
 
+[connection signal="health_updated" from="HealthComponent" to="HealthBarComponent" method="update_health"]
+[connection signal="max_health_updated" from="HealthComponent" to="HealthBarComponent" method="update_max_health"]
 [connection signal="area_entered" from="SightRange" to="StateMachine" method="_on_sight_range_area_entered"]
 [connection signal="area_exited" from="SightRange" to="StateMachine/Chase" method="_on_sight_range_area_exited"]
 [connection signal="timeout" from="StateMachine/Chase/AttackCooldown" to="StateMachine/Chase" method="_on_attack_cooldown_timeout"]

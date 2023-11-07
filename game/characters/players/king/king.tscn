@@ -754,7 +754,7 @@ max_health = 10
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("9_vgpw8")
-damage = 1
+damage = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
 position = Vector2(27, -16)
