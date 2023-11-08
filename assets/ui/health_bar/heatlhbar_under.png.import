@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://kofo1rnfr6db"
-path="res://.godot/imported/heatlhbar_over.png-e147ebef389c31895ef53543b0ab73c8.ctex"
+uid="uid://dn4uw8o6isuvc"
+path="res://.godot/imported/heatlhbar_under.png-e4e65dd1abbe9ec36a98ee4f479bf2df.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hud/health_bar/heatlhbar_over.png"
-dest_files=["res://.godot/imported/heatlhbar_over.png-e147ebef389c31895ef53543b0ab73c8.ctex"]
+source_file="res://assets/ui/health_bar/heatlhbar_under.png"
+dest_files=["res://.godot/imported/heatlhbar_under.png-e4e65dd1abbe9ec36a98ee4f479bf2df.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 class_name HealthComponent extends Node
 
-signal health_updated(max_health)
-signal max_health_updated(current_health)
+signal health_updated(current_health)
+signal max_health_updated(max_health)
 
 @export
 var max_health: int
@@ -20,7 +20,6 @@ func damage(value):
 	var newHealth = current_health - value
 	current_health = newHealth if newHealth > 0 else 0
 	health_updated.emit(current_health)
-	print("Current Health ", current_health)
 	
 func isDead():
 	return current_health == 0

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cglu268ld4fa1"]
+
+[ext_resource type="Script" path="res://game/gui/player_stats.gd" id="1_1ckbd"]
+[ext_resource type="Texture2D" uid="uid://qwrwyb8t4blr" path="res://assets/ui/player_stats/player_life_icon.png" id="1_dyel7"]
+[ext_resource type="PackedScene" uid="uid://ktdtphi6aw0h" path="res://game/common/components/health_bar/health_bar.tscn" id="2_lbbpj"]
+
+[node name="GUI" type="CanvasLayer"]
+
+[node name="PlayerStats" type="Panel" parent="."]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 54.0
+offset_bottom = 26.0
+scale = Vector2(5, 5)
+script = ExtResource("1_1ckbd")
+
+[node name="HeartIcon" type="Sprite2D" parent="PlayerStats"]
+texture_filter = 1
+position = Vector2(8, 9)
+texture = ExtResource("1_dyel7")
+
+[node name="HealthBarComponent" parent="PlayerStats" instance=ExtResource("2_lbbpj")]
+offset_left = 15.0
+offset_top = 7.0
+offset_right = 45.0
+offset_bottom = 11.0

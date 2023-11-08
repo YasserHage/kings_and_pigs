@@ -1,7 +1,7 @@
 [gd_scene load_steps=30 format=3 uid="uid://bwfatf7epxers"]
 
+[ext_resource type="Script" path="res://game/characters/players/king/king.gd" id="1_38elm"]
 [ext_resource type="Texture2D" uid="uid://bfsd4qr4m8850" path="res://assets/characters/players/king/king_idle_sprite.png" id="1_dnid4"]
-[ext_resource type="Script" path="res://game/characters/scripts/character.gd" id="1_sidxt"]
 [ext_resource type="Script" path="res://game/common/controllers/sprite_controller.gd" id="2_p8w1e"]
 [ext_resource type="Texture2D" uid="uid://bej33ogfmaume" path="res://assets/characters/players/king/king_walk_sprite.png" id="3_c4gfk"]
 [ext_resource type="Script" path="res://game/characters/players/king/scripts/Idle.gd" id="3_ka2kr"]
@@ -703,7 +703,7 @@ size = Vector2(20, 25)
 
 [node name="King" type="CharacterBody2D" node_paths=PackedStringArray("animations", "state_machine")]
 collision_layer = 2
-script = ExtResource("1_sidxt")
+script = ExtResource("1_38elm")
 animations = NodePath("AnimationPlayer")
 state_machine = NodePath("StateMachine")
 
@@ -748,7 +748,7 @@ shape = SubResource("RectangleShape2D_k8dkm")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("8_jd3bn")
-max_health = 10
+max_health = 100
 
 [node name="HitBoxComponent" type="Area2D" parent="."]
 collision_layer = 0
@@ -817,3 +817,6 @@ jump_power = 350
 animation_name = "jump"
 direction = "right"
 sprite = NodePath("../../SpriteController/JumpSprite")
+
+[connection signal="health_updated" from="HealthComponent" to="." method="_on_health_component_health_updated"]
+[connection signal="max_health_updated" from="HealthComponent" to="." method="_on_health_component_max_health_updated"]

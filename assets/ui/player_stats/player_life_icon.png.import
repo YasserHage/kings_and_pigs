@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hpbshgumr05q"
-path="res://.godot/imported/heatlhbar_progress.png-948d16f25215c8b8745a333a25d8a823.ctex"
+uid="uid://qwrwyb8t4blr"
+path="res://.godot/imported/player_life_icon.png-77cc95febadaebed0d77b72874bb1e7e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hud/health_bar/heatlhbar_progress.png"
-dest_files=["res://.godot/imported/heatlhbar_progress.png-948d16f25215c8b8745a333a25d8a823.ctex"]
+source_file="res://assets/ui/player_stats/player_life_icon.png"
+dest_files=["res://.godot/imported/player_life_icon.png-77cc95febadaebed0d77b72874bb1e7e.ctex"]
 
 [params]
 

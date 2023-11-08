@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dn12m33b6s3kq"]
+[gd_scene load_steps=8 format=3 uid="uid://dn12m33b6s3kq"]
 
 [ext_resource type="Texture2D" uid="uid://d0my64sa6uy66" path="res://assets/tiles/terrain_tileset.png" id="1_p428g"]
 [ext_resource type="PackedScene" uid="uid://bwfatf7epxers" path="res://game/characters/players/king/king.tscn" id="2_lbny7"]
 [ext_resource type="PackedScene" uid="uid://dcpi4uv4o4fes" path="res://game/characters/enemies/king_pig/king_pig.tscn" id="3_0176y"]
+[ext_resource type="PackedScene" uid="uid://cglu268ld4fa1" path="res://game/gui/gui.tscn" id="4_ilwtv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g38c8"]
 texture = ExtResource("1_p428g")
@@ -1644,3 +1645,5 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/EnemyCollisions"]
 position = Vector2(0, -4)
 shape = SubResource("SegmentShape2D_0bn7w")
+
+[node name="GUI" parent="." instance=ExtResource("4_ilwtv")]

@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://ktdtphi6aw0h"]
 
 [ext_resource type="Script" path="res://game/common/components/health_bar/health_bar.gd" id="1_lmry8"]
-[ext_resource type="Texture2D" uid="uid://dn4uw8o6isuvc" path="res://assets/hud/health_bar/heatlhbar_under.png" id="2_6yho7"]
-[ext_resource type="Texture2D" uid="uid://kofo1rnfr6db" path="res://assets/hud/health_bar/heatlhbar_over.png" id="3_peqdw"]
-[ext_resource type="Texture2D" uid="uid://hpbshgumr05q" path="res://assets/hud/health_bar/heatlhbar_progress.png" id="4_bdrsy"]
+[ext_resource type="Texture2D" uid="uid://dn4uw8o6isuvc" path="res://assets/ui/health_bar/heatlhbar_under.png" id="2_18bkd"]
+[ext_resource type="Texture2D" uid="uid://kofo1rnfr6db" path="res://assets/ui/health_bar/heatlhbar_over.png" id="3_0u3qn"]
+[ext_resource type="Texture2D" uid="uid://hpbshgumr05q" path="res://assets/ui/health_bar/heatlhbar_progress.png" id="4_rxliu"]
 
 [node name="HealthBarComponent" type="Control"]
 layout_mode = 3
@@ -18,9 +18,9 @@ layout_mode = 0
 offset_right = 30.0
 offset_bottom = 4.0
 value = 100.0
-texture_under = ExtResource("2_6yho7")
-texture_over = ExtResource("3_peqdw")
-texture_progress = ExtResource("4_bdrsy")
+texture_under = ExtResource("2_18bkd")
+texture_over = ExtResource("3_0u3qn")
+texture_progress = ExtResource("4_rxliu")
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
 texture_filter = 1
@@ -28,6 +28,6 @@ layout_mode = 0
 offset_right = 30.0
 offset_bottom = 4.0
 value = 100.0
-texture_over = ExtResource("3_peqdw")
-texture_progress = ExtResource("4_bdrsy")
+texture_over = ExtResource("3_0u3qn")
+texture_progress = ExtResource("4_rxliu")
 tint_progress = Color(0.929412, 0.0470588, 0.117647, 1)
