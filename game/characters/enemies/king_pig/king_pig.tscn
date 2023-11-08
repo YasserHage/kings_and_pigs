@@ -753,6 +753,7 @@ radius = 5.42857
 collision_layer = 4
 collision_mask = 33
 script = ExtResource("1_kerpc")
+speed = 60
 animations = NodePath("AnimationPlayer")
 state_machine = NodePath("StateMachine")
 
@@ -785,11 +786,10 @@ hframes = 6
 texture = ExtResource("5_t67ft")
 hframes = 5
 
-[node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+[node name="HurtBoxComponent" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("7_mmakf")
-health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
 position = Vector2(1, -10)
@@ -801,6 +801,7 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("8_evr8b")
 damage = 10
+knockback_power = 50
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
 position = Vector2(-14, -16)
@@ -848,7 +849,6 @@ one_shot = true
 
 [node name="Patrol" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "sprite")]
 script = ExtResource("6_63f0r")
-speed = 60
 idle_state = NodePath("../Idle")
 animation_name = "walk"
 direction = "left"
@@ -856,7 +856,7 @@ sprite = NodePath("../../SpriteController/WalkSprite")
 
 [node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_cooldown", "idle_state", "attack_sprite", "sprite")]
 script = ExtResource("8_fgqie")
-speed = 80
+speed_modifier = 1.3
 attack_cooldown = NodePath("AttackCooldown")
 idle_state = NodePath("../Idle")
 attack_sprite = NodePath("../../SpriteController/AttackSprite")
@@ -869,6 +869,8 @@ sprite = NodePath("../../SpriteController/WalkSprite")
 
 [connection signal="health_updated" from="HealthComponent" to="HealthBarComponent" method="update_health"]
 [connection signal="max_health_updated" from="HealthComponent" to="HealthBarComponent" method="update_max_health"]
+[connection signal="hurt_box_hit" from="HurtBoxComponent" to="." method="_on_hurt_box_hit"]
+[connection signal="hurt_box_hit" from="HurtBoxComponent" to="HealthComponent" method="_on_hurt_box_hit"]
 [connection signal="area_entered" from="SightRange" to="StateMachine" method="_on_sight_range_area_entered"]
 [connection signal="area_exited" from="SightRange" to="StateMachine/Chase" method="_on_sight_range_area_exited"]
 [connection signal="timeout" from="StateMachine/Chase/AttackCooldown" to="StateMachine/Chase" method="_on_attack_cooldown_timeout"]

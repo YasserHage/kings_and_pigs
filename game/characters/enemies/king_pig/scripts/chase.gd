@@ -1,7 +1,7 @@
 extends CharacterState
 
 @export
-var speed: int
+var speed_modifier: float
 @export
 var attack_cooldown: Timer
 @export
@@ -37,7 +37,7 @@ func processPhysics(delta: float) -> State:
 			moveDirection.x = 0
 			if !onAttackCooldown:
 				_attack()
-		parent.velocity.x = moveDirection.normalized().x * speed
+		parent.velocity.x = moveDirection.normalized().x * parent.speed * speed_modifier
 		parent.move_and_slide()
 	return null
 

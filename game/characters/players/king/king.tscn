@@ -704,6 +704,7 @@ size = Vector2(20, 25)
 [node name="King" type="CharacterBody2D" node_paths=PackedStringArray("animations", "state_machine")]
 collision_layer = 2
 script = ExtResource("1_38elm")
+speed = 200
 animations = NodePath("AnimationPlayer")
 state_machine = NodePath("StateMachine")
 
@@ -755,17 +756,17 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("9_vgpw8")
 damage = 10
+knockback_power = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
 position = Vector2(27, -16)
 rotation = -0.282743
 shape = SubResource("CapsuleShape2D_sg5tx")
 
-[node name="HurtBoxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+[node name="HurtBoxComponent" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("9_bpi7f")
-health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
 position = Vector2(-8, -12.5)
@@ -800,7 +801,6 @@ idle_state = NodePath("../Idle")
 jump_state = NodePath("../Jump")
 attack_sprite = NodePath("../../SpriteController/AttackSprite")
 attack_animation_name = "attack"
-speed = 200
 animation_name = "walk"
 direction = "right"
 sprite = NodePath("../../SpriteController/WalkSprite")
@@ -820,3 +820,5 @@ sprite = NodePath("../../SpriteController/JumpSprite")
 
 [connection signal="health_updated" from="HealthComponent" to="." method="_on_health_component_health_updated"]
 [connection signal="max_health_updated" from="HealthComponent" to="." method="_on_health_component_max_health_updated"]
+[connection signal="hurt_box_hit" from="HurtBoxComponent" to="." method="_on_hurt_box_hit"]
+[connection signal="hurt_box_hit" from="HurtBoxComponent" to="HealthComponent" method="_on_hurt_box_hit"]

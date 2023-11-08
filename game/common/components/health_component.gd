@@ -24,3 +24,6 @@ func damage(value):
 func isDead():
 	return current_health == 0
 	print("Dead")
+
+func _on_hurt_box_hit(hit_box:HitBoxComponent):
+	damage(hit_box.getDamage())
