@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dcpi4uv4o4fes"]
+[gd_scene load_steps=32 format=3 uid="uid://dcpi4uv4o4fes"]
 
 [ext_resource type="Texture2D" uid="uid://b6j6k6l7ljp6c" path="res://assets/characters/enemies/king_pig/king_pig_idle_sprite.png" id="1_abfk2"]
 [ext_resource type="Script" path="res://game/characters/enemies/king_pig/scripts/king_pig.gd" id="1_kerpc"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" path="res://game/common/components/hurtbox_component.gd" id="7_mmakf"]
 [ext_resource type="Script" path="res://game/common/components/hitbox_component.gd" id="8_evr8b"]
 [ext_resource type="Script" path="res://game/characters/enemies/king_pig/scripts/chase.gd" id="8_fgqie"]
+[ext_resource type="Texture2D" uid="uid://d1mg21yed73j8" path="res://assets/characters/enemies/king_pig/hit_sprite.png" id="8_rprdy"]
+[ext_resource type="Script" path="res://game/characters/enemies/king_pig/hit.gd" id="15_t1u4g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_276l7"]
 size = Vector2(14, 20)
@@ -202,6 +204,42 @@ tracks/14/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("SpriteController/HitSprite:frame")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("SpriteController/HitSprite:offset")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("SpriteController/HitSprite:flip_h")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_7q611"]
@@ -730,11 +768,93 @@ tracks/3/keys = {
 "values": [Vector2(55, -38)]
 }
 
+[sub_resource type="Animation" id="Animation_oiryr"]
+resource_name = "hit_right"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteController/HitSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteController/HitSprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteController/HitSprite:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_lgtwn"]
+resource_name = "hit_left"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteController/HitSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteController/HitSprite:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteController/HitSprite:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t4hkd"]
 _data = {
 "RESET": SubResource("Animation_w0ccw"),
 "attack_left": SubResource("Animation_7q611"),
 "attack_right": SubResource("Animation_2ohat"),
+"hit_left": SubResource("Animation_lgtwn"),
+"hit_right": SubResource("Animation_oiryr"),
 "idle_left": SubResource("Animation_l1jaj"),
 "idle_right": SubResource("Animation_gshle"),
 "run_left": SubResource("Animation_76442"),
@@ -749,13 +869,14 @@ size = Vector2(14, 20)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eyhab"]
 radius = 5.42857
 
-[node name="KingPig" type="CharacterBody2D" node_paths=PackedStringArray("animations", "state_machine")]
+[node name="KingPig" type="CharacterBody2D" node_paths=PackedStringArray("animations", "state_machine", "hit_state")]
 collision_layer = 4
 collision_mask = 33
 script = ExtResource("1_kerpc")
 speed = 60
 animations = NodePath("AnimationPlayer")
 state_machine = NodePath("StateMachine")
+hit_state = NodePath("StateMachine/Hit")
 
 [node name="HealthBarComponent" parent="." instance=ExtResource("3_slv64")]
 offset_left = -15.0
@@ -783,8 +904,13 @@ flip_h = true
 hframes = 6
 
 [node name="AttackSprite" type="Sprite2D" parent="SpriteController"]
+visible = false
 texture = ExtResource("5_t67ft")
 hframes = 5
+
+[node name="HitSprite" type="Sprite2D" parent="SpriteController"]
+texture = ExtResource("8_rprdy")
+hframes = 2
 
 [node name="HurtBoxComponent" type="Area2D" parent="."]
 collision_layer = 0
@@ -801,7 +927,7 @@ collision_layer = 0
 collision_mask = 0
 script = ExtResource("8_evr8b")
 damage = 10
-knockback_power = 50
+knockback_power = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
 position = Vector2(-14, -16)
@@ -866,6 +992,14 @@ direction = "left"
 sprite = NodePath("../../SpriteController/WalkSprite")
 
 [node name="AttackCooldown" type="Timer" parent="StateMachine/Chase"]
+
+[node name="Hit" type="Node" parent="StateMachine" node_paths=PackedStringArray("hurt_box", "chase_state", "sprite")]
+script = ExtResource("15_t1u4g")
+hurt_box = NodePath("../../HurtBoxComponent")
+chase_state = NodePath("../Chase")
+animation_name = "hit"
+direction = "right"
+sprite = NodePath("../../SpriteController/HitSprite")
 
 [connection signal="health_updated" from="HealthComponent" to="HealthBarComponent" method="update_health"]
 [connection signal="max_health_updated" from="HealthComponent" to="HealthBarComponent" method="update_max_health"]

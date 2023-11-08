@@ -6,6 +6,8 @@ var speed: int
 var animations: AnimationPlayer
 @export
 var state_machine: StateMachine
+@export
+var hit_state: State
 
 func  _ready():
 	state_machine.init(self)
@@ -20,7 +22,9 @@ func _process(delta):
 	state_machine.processFrame(delta)
 	
 func _on_hurt_box_hit(hit_box:HitBoxComponent):
-# knockback and animation
+	if hit_state:
+		state_machine.force(hit_state)
+		
 	var hitDirection:Vector2 = position - hit_box.global_position
 	knockback(hitDirection.normalized() * speed, hit_box.getKnockbackPower())
 	

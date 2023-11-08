@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bwfatf7epxers"]
+[gd_scene load_steps=34 format=3 uid="uid://bwfatf7epxers"]
 
 [ext_resource type="Script" path="res://game/characters/players/king/king.gd" id="1_38elm"]
 [ext_resource type="Texture2D" uid="uid://bfsd4qr4m8850" path="res://assets/characters/players/king/king_idle_sprite.png" id="1_dnid4"]
@@ -11,9 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://cr8g3ad7fem2i" path="res://assets/characters/players/king/king_attack_sprite.png" id="7_ef28f"]
 [ext_resource type="Script" path="res://game/common/states/state_machine.gd" id="8_5gh6x"]
 [ext_resource type="Script" path="res://game/common/components/health_component.gd" id="8_jd3bn"]
+[ext_resource type="Texture2D" uid="uid://1pq2pthatex7" path="res://assets/characters/players/king/hit_sprite.png" id="8_r2gyx"]
 [ext_resource type="Script" path="res://game/characters/players/king/scripts/Jump.gd" id="9_86cde"]
 [ext_resource type="Script" path="res://game/common/components/hurtbox_component.gd" id="9_bpi7f"]
 [ext_resource type="Script" path="res://game/common/components/hitbox_component.gd" id="9_vgpw8"]
+[ext_resource type="Script" path="res://game/characters/players/king/hit.gd" id="16_04kql"]
 
 [sub_resource type="Animation" id="Animation_ogaut"]
 length = 0.001
@@ -220,6 +222,42 @@ tracks/16/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("SpriteController/HitSprite:frame")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("SpriteController/HitSprite:flip_h")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("SpriteController/HitSprite:offset")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_gyjue"]
@@ -448,6 +486,86 @@ tracks/1/path = NodePath("SpriteController/FallSprite:offset")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_d68kx"]
+resource_name = "hit_left"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteController/HitSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteController/HitSprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteController/HitSprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-16, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xu8gj"]
+resource_name = "hit_right"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteController/HitSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteController/HitSprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteController/HitSprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -683,6 +801,8 @@ _data = {
 "attack_right": SubResource("Animation_ceas8"),
 "fall_left": SubResource("Animation_043ms"),
 "fall_right": SubResource("Animation_c4vs1"),
+"hit_left": SubResource("Animation_d68kx"),
+"hit_right": SubResource("Animation_xu8gj"),
 "idle_left": SubResource("Animation_ton6j"),
 "idle_right": SubResource("Animation_mccor"),
 "jump_left": SubResource("Animation_a78ir"),
@@ -701,12 +821,13 @@ height = 46.1588
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bblby"]
 size = Vector2(20, 25)
 
-[node name="King" type="CharacterBody2D" node_paths=PackedStringArray("animations", "state_machine")]
+[node name="King" type="CharacterBody2D" node_paths=PackedStringArray("animations", "state_machine", "hit_state")]
 collision_layer = 2
 script = ExtResource("1_38elm")
 speed = 200
 animations = NodePath("AnimationPlayer")
 state_machine = NodePath("StateMachine")
+hit_state = NodePath("StateMachine/Hit")
 
 [node name="SpriteController" type="Node2D" parent="."]
 position = Vector2(0, -15)
@@ -735,8 +856,14 @@ visible = false
 texture = ExtResource("6_inhpl")
 
 [node name="AttackSprite" type="Sprite2D" parent="SpriteController"]
+visible = false
 texture = ExtResource("7_ef28f")
 hframes = 3
+
+[node name="HitSprite" type="Sprite2D" parent="SpriteController"]
+texture = ExtResource("8_r2gyx")
+hframes = 2
+frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -817,6 +944,14 @@ jump_power = 350
 animation_name = "jump"
 direction = "right"
 sprite = NodePath("../../SpriteController/JumpSprite")
+
+[node name="Hit" type="Node" parent="StateMachine" node_paths=PackedStringArray("hurt_box", "idle_state", "sprite")]
+script = ExtResource("16_04kql")
+hurt_box = NodePath("../../HurtBoxComponent")
+idle_state = NodePath("../Idle")
+animation_name = "hit"
+direction = "right"
+sprite = NodePath("../../SpriteController/HitSprite")
 
 [connection signal="health_updated" from="HealthComponent" to="." method="_on_health_component_health_updated"]
 [connection signal="max_health_updated" from="HealthComponent" to="." method="_on_health_component_max_health_updated"]

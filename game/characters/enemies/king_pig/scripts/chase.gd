@@ -18,6 +18,7 @@ var target: Area2D
 var stopChase = false
 
 func enter() -> void:
+	stopChase = false
 	isAttacking = false
 	super()
 	
