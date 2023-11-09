@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://bwfatf7epxers"]
 
-[ext_resource type="Script" path="res://game/characters/players/king/king.gd" id="1_38elm"]
 [ext_resource type="Texture2D" uid="uid://bfsd4qr4m8850" path="res://assets/characters/players/king/king_idle_sprite.png" id="1_dnid4"]
+[ext_resource type="Script" path="res://game/characters/players/king/scripts/king.gd" id="1_qkgqe"]
 [ext_resource type="Script" path="res://game/common/controllers/sprite_controller.gd" id="2_p8w1e"]
 [ext_resource type="Texture2D" uid="uid://bej33ogfmaume" path="res://assets/characters/players/king/king_walk_sprite.png" id="3_c4gfk"]
 [ext_resource type="Script" path="res://game/characters/players/king/scripts/Idle.gd" id="3_ka2kr"]
@@ -14,8 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://1pq2pthatex7" path="res://assets/characters/players/king/hit_sprite.png" id="8_r2gyx"]
 [ext_resource type="Script" path="res://game/characters/players/king/scripts/Jump.gd" id="9_86cde"]
 [ext_resource type="Script" path="res://game/common/components/hurtbox_component.gd" id="9_bpi7f"]
-[ext_resource type="Script" path="res://game/common/components/hitbox_component.gd" id="9_vgpw8"]
-[ext_resource type="Script" path="res://game/characters/players/king/hit.gd" id="16_04kql"]
+[ext_resource type="Script" path="res://game/characters/players/king/scripts/king_hitbox.gd" id="10_nvs7g"]
+[ext_resource type="Script" path="res://game/characters/players/king/scripts/hit.gd" id="16_6rakd"]
 
 [sub_resource type="Animation" id="Animation_ogaut"]
 length = 0.001
@@ -214,46 +214,34 @@ tracks/15/keys = {
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("HitBoxComponent:collision_layer")
+tracks/16/path = NodePath("SpriteController/HitSprite:frame")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0]
+"values": [1]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("SpriteController/HitSprite:frame")
+tracks/17/path = NodePath("SpriteController/HitSprite:flip_h")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [false]
 }
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("SpriteController/HitSprite:flip_h")
+tracks/18/path = NodePath("SpriteController/HitSprite:offset")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/19/type = "value"
-tracks/19/imported = false
-tracks/19/enabled = true
-tracks/19/path = NodePath("SpriteController/HitSprite:offset")
-tracks/19/interp = 1
-tracks/19/loop_wrap = true
-tracks/19/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -309,7 +297,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-43, -16), Vector2(-35, -28)]
+"values": [Vector2(-41, -20), Vector2(-33, -30)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -333,19 +321,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.7, 0.7)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("HitBoxComponent:collision_layer")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [8, 8, 0]
+"values": [Vector2(0.8, 0.8), Vector2(0.5, 0.5)]
 }
 
 [sub_resource type="Animation" id="Animation_ceas8"]
@@ -397,7 +373,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(27, -16), Vector2(19, -28)]
+"values": [Vector2(25, -20), Vector2(17, -30)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -421,19 +397,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.7, 0.7)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("HitBoxComponent:collision_layer")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [8, 8, 0]
+"values": [Vector2(0.8, 0.8), Vector2(0.5, 0.5)]
 }
 
 [sub_resource type="Animation" id="Animation_043ms"]
@@ -823,7 +787,7 @@ size = Vector2(20, 25)
 
 [node name="King" type="CharacterBody2D" node_paths=PackedStringArray("animations", "state_machine", "hit_state")]
 collision_layer = 2
-script = ExtResource("1_38elm")
+script = ExtResource("1_qkgqe")
 speed = 200
 animations = NodePath("AnimationPlayer")
 state_machine = NodePath("StateMachine")
@@ -856,11 +820,11 @@ visible = false
 texture = ExtResource("6_inhpl")
 
 [node name="AttackSprite" type="Sprite2D" parent="SpriteController"]
-visible = false
 texture = ExtResource("7_ef28f")
 hframes = 3
 
 [node name="HitSprite" type="Sprite2D" parent="SpriteController"]
+visible = false
 texture = ExtResource("8_r2gyx")
 hframes = 2
 frame = 1
@@ -881,7 +845,8 @@ max_health = 100
 [node name="HitBoxComponent" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("9_vgpw8")
+script = ExtResource("10_nvs7g")
+hitbox_layer = 4
 damage = 10
 knockback_power = 16
 
@@ -946,7 +911,7 @@ direction = "right"
 sprite = NodePath("../../SpriteController/JumpSprite")
 
 [node name="Hit" type="Node" parent="StateMachine" node_paths=PackedStringArray("hurt_box", "idle_state", "sprite")]
-script = ExtResource("16_04kql")
+script = ExtResource("16_6rakd")
 hurt_box = NodePath("../../HurtBoxComponent")
 idle_state = NodePath("../Idle")
 animation_name = "hit"

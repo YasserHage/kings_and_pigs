@@ -50,7 +50,7 @@ func _attack() -> void:
 	parent.animations.play(attack_animation_name + "_" + direction)
 
 func _verifyAttackFinished() -> void:
-	if isAttacking && !parent.animations.is_playing():
+	if isAttacking && !parent.animations.current_animation.contains(attack_animation_name):
 		isAttacking = false
 		reset()
 

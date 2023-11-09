@@ -7,6 +7,7 @@ var idle_state: State
 
 func enter() -> void:
 	hurt_box.monitoring = false
+	PlayerEvents.is_player_attacking.emit(false)
 	super()
 
 func processFrame(delta: float) -> State:

@@ -24,6 +24,11 @@ func enter() -> void:
 	super()
 	parent.velocity.y = -jump_power
 
+func exit() -> void:
+	if (isAttacking):
+		_stop_attack()
+	
+
 func processInput(event: InputEvent) -> State:
 	if Input.is_action_pressed("attack"):
 		_attack()
@@ -65,14 +70,19 @@ func handleMovement() -> void:
 
 func _attack() -> void:
 	isAttacking = true
+	PlayerEvents.is_player_attacking.emit(isAttacking)
 	sprite.get_parent().enableSprite(attack_sprite)
 	parent.animations.play(attack_animation_name + "_" + direction)
 		
 func _verifyAttackFinished() -> void:
-	if isAttacking && !parent.animations.is_playing():
-		isAttacking = false
+	if isAttacking && !parent.animations.current_animation.contains(attack_animation_name):
+		_stop_attack()
 		reset()
 		
+func _stop_attack():
+	isAttacking = false
+	PlayerEvents.is_player_attacking.emit(isAttacking)
+	
 func _verifyAnimation(currentDirection) -> void:
 	if direction != currentDirection:
 		playAnimation()
