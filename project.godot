@@ -72,6 +72,7 @@ attack={
 2d_physics/layer_5="Enemies Hitbox"
 2d_physics/layer_6="Enemy Boundaries"
 2d_physics/layer_7="One Way Platforms"
+2d_physics/layer_8="Death Zones"
 
 [rendering]
 

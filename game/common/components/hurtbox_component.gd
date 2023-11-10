@@ -6,5 +6,6 @@ func _ready():
 	self.area_entered.connect(_on_area_entered)
 
 func _on_area_entered(area):
-	if area is HitBoxComponent:
-		hurt_box_hit.emit(area)
+	area.                      
+#	if area is HitBoxComponent:
+#		hurt_box_hit.emit(area)

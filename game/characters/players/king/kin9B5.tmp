@@ -860,70 +860,10 @@ shape = SubResource("CapsuleShape2D_sg5tx")
 collision_layer = 0
 collision_mask = 144
 script = ExtResource("9_bpi7f")
+death_zone_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
 position = Vector2(-8, -12.5)
 shape = SubResource("RectangleShape2D_bblby")
 
-[node name="DetectionArea" type="Area2D" parent="."]
-visible = false
-collision_layer = 2
-collision_mask = 0
-
-[node name="Area" type="CollisionShape2D" parent="DetectionArea"]
-position = Vector2(-8, -12.5)
-shape = SubResource("RectangleShape2D_k8dkm")
-
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
-script = ExtResource("8_5gh6x")
-starting_state = NodePath("Idle")
-
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("walk_state", "jump_state", "attack_sprite", "sprite")]
-script = ExtResource("3_ka2kr")
-walk_state = NodePath("../Walk")
-jump_state = NodePath("../Jump")
-attack_sprite = NodePath("../../SpriteController/AttackSprite")
-attack_animation_name = "attack"
-one_way_layer = 7
-animation_name = "idle"
-direction = "right"
-sprite = NodePath("../../SpriteController/IdleSprite")
-
-[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "jump_state", "attack_sprite", "sprite")]
-script = ExtResource("5_sp6pa")
-idle_state = NodePath("../Idle")
-jump_state = NodePath("../Jump")
-attack_sprite = NodePath("../../SpriteController/AttackSprite")
-attack_animation_name = "attack"
-animation_name = "walk"
-direction = "right"
-sprite = NodePath("../../SpriteController/WalkSprite")
-
-[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("idle_state", "walk_state", "fall_sprite", "attack_sprite", "sprite")]
-script = ExtResource("9_86cde")
-idle_state = NodePath("../Idle")
-walk_state = NodePath("../Walk")
-fall_sprite = NodePath("../../SpriteController/FallSprite")
-attack_sprite = NodePath("../../SpriteController/AttackSprite")
-attack_animation_name = "attack"
-jump_power = 350
-animation_name = "jump"
-direction = "right"
-sprite = NodePath("../../SpriteController/JumpSprite")
-
-[node name="Hit" type="Node" parent="StateMachine" node_paths=PackedStringArray("hurt_box", "idle_state", "sprite")]
-script = ExtResource("16_6rakd")
-hurt_box = NodePath("../../HurtBoxComponent")
-idle_state = NodePath("../Idle")
-animation_name = "hit"
-direction = "right"
-sprite = NodePath("../../SpriteController/HitSprite")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
-
-[connection signal="death" from="HealthComponent" to="." method="_on_death"]
-[connection signal="health_updated" from="HealthComponent" to="." method="_on_health_component_health_updated"]
-[connection signal="max_health_updated" from="HealthComponent" to="." method="_on_health_component_max_health_updated"]
-[connection signal="hurt_box_hit" from="HurtBoxComponent" to="." method="_on_hurt_box_hit"]
-[connection signal="hurt_box_hit" from="HurtBoxComponent" to="HealthComponent" method="_on_hurt_box_hit"]
+[node name="DetectionArea" type="Are
