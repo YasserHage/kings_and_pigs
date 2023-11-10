@@ -9,8 +9,9 @@ var max_health: int
 var current_health: int
 
 func _ready():
-	max_health_updated.emit(max_health)
 	current_health = max_health
+	max_health_updated.emit(max_health)
+	health_updated.emit(current_health)
 
 func heal(value):
 	var newHealth = current_health + value

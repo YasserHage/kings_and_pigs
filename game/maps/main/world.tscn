@@ -1644,7 +1644,6 @@ position = Vector2(0, -4)
 shape = SubResource("SegmentShape2D_0bn7w")
 
 [node name="GUI" parent="." instance=ExtResource("4_ilwtv")]
-visible = false
 
 [node name="SpawnerComponent" type="Marker2D" parent="." node_paths=PackedStringArray("parent")]
 position = Vector2(397, 146)
