@@ -914,8 +914,9 @@ hframes = 2
 
 [node name="HurtBoxComponent" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 8
+collision_mask = 136
 script = ExtResource("7_mmakf")
+death_zone_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
 position = Vector2(1, -10)
@@ -1005,6 +1006,7 @@ sprite = NodePath("../../SpriteController/HitSprite")
 [connection signal="death" from="HealthComponent" to="." method="_on_death"]
 [connection signal="health_updated" from="HealthComponent" to="HealthBarComponent" method="update_health"]
 [connection signal="max_health_updated" from="HealthComponent" to="HealthBarComponent" method="update_max_health"]
+[connection signal="entered_death_zone" from="HurtBoxComponent" to="." method="_on_death"]
 [connection signal="hurt_box_hit" from="HurtBoxComponent" to="." method="_on_hurt_box_hit"]
 [connection signal="hurt_box_hit" from="HurtBoxComponent" to="HealthComponent" method="_on_hurt_box_hit"]
 [connection signal="area_entered" from="SightRange" to="StateMachine" method="_on_sight_range_area_entered"]

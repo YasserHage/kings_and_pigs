@@ -8,9 +8,9 @@ var death_zone_layer: int
 
 func _ready():
 	self.area_entered.connect(_on_area_entered)
-
-func _on_area_entered(area):
-	if area.get_collision_layer_value(8):
+	
+func _on_area_entered(area:Area2D):
+	if area.get_collision_layer_value(death_zone_layer):
 		entered_death_zone.emit()
 	if area is HitBoxComponent:
 		hurt_box_hit.emit(area)

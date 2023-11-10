@@ -10,8 +10,6 @@ func _ready():
 	start_position = points[1]
 	end_position= points[0]
 	super()
-	
-
 
 func _on_death():
 	queue_free()
