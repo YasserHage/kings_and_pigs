@@ -893,7 +893,6 @@ position = Vector2(0, -14)
 script = ExtResource("2_5u5nd")
 
 [node name="IdleSprite" type="Sprite2D" parent="SpriteController"]
-visible = false
 texture = ExtResource("1_abfk2")
 hframes = 12
 
@@ -909,6 +908,7 @@ texture = ExtResource("5_t67ft")
 hframes = 5
 
 [node name="HitSprite" type="Sprite2D" parent="SpriteController"]
+visible = false
 texture = ExtResource("8_rprdy")
 hframes = 2
 
@@ -1002,6 +1002,7 @@ animation_name = "hit"
 direction = "right"
 sprite = NodePath("../../SpriteController/HitSprite")
 
+[connection signal="death" from="HealthComponent" to="." method="_on_death"]
 [connection signal="health_updated" from="HealthComponent" to="HealthBarComponent" method="update_health"]
 [connection signal="max_health_updated" from="HealthComponent" to="HealthBarComponent" method="update_max_health"]
 [connection signal="hurt_box_hit" from="HurtBoxComponent" to="." method="_on_hurt_box_hit"]

@@ -68,7 +68,7 @@ func _stop_attack():
 	PlayerEvents.is_player_attacking.emit(isAttacking)
 	
 func _verifyIdle() -> bool:
-	return !(Input.is_action_just_pressed("ui_right") || Input.is_action_just_pressed("ui_right"))
+	return !(Input.is_action_just_pressed("ui_left") || Input.is_action_just_pressed("ui_right"))
 
 func _verifyAnimation(currentDirection):
 	if direction != currentDirection:

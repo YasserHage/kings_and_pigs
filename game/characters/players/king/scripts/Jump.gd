@@ -11,8 +11,6 @@ var attack_sprite: Sprite2D
 @export
 var attack_animation_name: String
 @export
-var speed: int
-@export
 var jump_power: int
 
 var jump_sprite
@@ -58,12 +56,12 @@ func handleMovement() -> void:
 	if Input.is_action_pressed("ui_left"):
 		direction = "left"
 		_verifyAnimation(currentDirection)
-		parent.velocity.x = -speed;
+		parent.velocity.x = -parent.speed;
 		return
 	if Input.is_action_pressed("ui_right"):
 		direction = "right"
 		_verifyAnimation(currentDirection)
-		parent.velocity.x = speed;
+		parent.velocity.x = parent.speed;
 		return
 		
 	parent.velocity.x = 0;

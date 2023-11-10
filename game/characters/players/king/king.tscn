@@ -904,7 +904,6 @@ walk_state = NodePath("../Walk")
 fall_sprite = NodePath("../../SpriteController/FallSprite")
 attack_sprite = NodePath("../../SpriteController/AttackSprite")
 attack_animation_name = "attack"
-speed = 200
 jump_power = 350
 animation_name = "jump"
 direction = "right"
@@ -918,6 +917,10 @@ animation_name = "hit"
 direction = "right"
 sprite = NodePath("../../SpriteController/HitSprite")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[connection signal="death" from="HealthComponent" to="." method="_on_death"]
 [connection signal="health_updated" from="HealthComponent" to="." method="_on_health_component_health_updated"]
 [connection signal="max_health_updated" from="HealthComponent" to="." method="_on_health_component_max_health_updated"]
 [connection signal="hurt_box_hit" from="HurtBoxComponent" to="." method="_on_hurt_box_hit"]
