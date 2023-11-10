@@ -871,7 +871,7 @@ radius = 5.42857
 
 [node name="KingPig" type="CharacterBody2D" node_paths=PackedStringArray("animations", "state_machine", "hit_state")]
 collision_layer = 4
-collision_mask = 33
+collision_mask = 97
 script = ExtResource("1_kerpc")
 speed = 60
 animations = NodePath("AnimationPlayer")

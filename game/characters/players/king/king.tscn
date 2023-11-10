@@ -787,6 +787,7 @@ size = Vector2(20, 25)
 
 [node name="King" type="CharacterBody2D" node_paths=PackedStringArray("animations", "state_machine", "hit_state")]
 collision_layer = 2
+collision_mask = 65
 script = ExtResource("1_qkgqe")
 speed = 200
 animations = NodePath("AnimationPlayer")
@@ -883,6 +884,7 @@ walk_state = NodePath("../Walk")
 jump_state = NodePath("../Jump")
 attack_sprite = NodePath("../../SpriteController/AttackSprite")
 attack_animation_name = "attack"
+one_way_layer = 7
 animation_name = "idle"
 direction = "right"
 sprite = NodePath("../../SpriteController/IdleSprite")
