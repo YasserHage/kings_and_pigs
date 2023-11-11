@@ -982,11 +982,13 @@ animation_name = "walk"
 direction = "left"
 sprite = NodePath("../../SpriteController/WalkSprite")
 
-[node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_cooldown", "idle_state", "attack_sprite", "sprite")]
+[node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("attack_cooldown", "idle_state", "hitbox", "attack_sprite", "sprite")]
 script = ExtResource("8_fgqie")
 speed_modifier = 1.3
 attack_cooldown = NodePath("AttackCooldown")
 idle_state = NodePath("../Idle")
+hitbox = NodePath("../../HitBoxComponent")
+hitbox_layer = 5
 attack_sprite = NodePath("../../SpriteController/AttackSprite")
 attack_animation_name = "attack"
 animation_name = "run"

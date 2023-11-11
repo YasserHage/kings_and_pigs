@@ -7,6 +7,10 @@ var attack_cooldown: Timer
 @export
 var idle_state: CharacterState
 @export
+var hitbox: HitBoxComponent
+@export
+var hitbox_layer: int
+@export
 var attack_sprite: Sprite2D
 @export
 var attack_animation_name: String
@@ -21,6 +25,9 @@ func enter() -> void:
 	stopChase = false
 	isAttacking = false
 	super()
+	
+func exit() -> void:
+	hitbox.set_collision_layer_value(hitbox_layer, false)
 	
 func processFrame(delta: float) -> State:
 	_verifyAttackFinished()

@@ -2640,7 +2640,7 @@ shape = SubResource("RectangleShape2D_hmxjg")
 [node name="GUI" parent="." instance=ExtResource("4_ilwtv")]
 
 [node name="SpawnerComponent" type="Marker2D" parent="." node_paths=PackedStringArray("parent")]
-position = Vector2(521, 134)
+position = Vector2(526, 126)
 script = ExtResource("5_hbm0l")
 scene = ExtResource("2_lbny7")
 parent = NodePath("../Characters")
