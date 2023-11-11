@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dcpi4uv4o4fes"]
+[gd_scene load_steps=36 format=3 uid="uid://dcpi4uv4o4fes"]
 
 [ext_resource type="Texture2D" uid="uid://b6j6k6l7ljp6c" path="res://assets/characters/enemies/king_pig/king_pig_idle_sprite.png" id="1_abfk2"]
 [ext_resource type="Script" path="res://game/characters/enemies/king_pig/scripts/king_pig.gd" id="1_kerpc"]
@@ -14,7 +14,9 @@
 [ext_resource type="Script" path="res://game/common/components/hitbox_component.gd" id="8_evr8b"]
 [ext_resource type="Script" path="res://game/characters/enemies/king_pig/scripts/chase.gd" id="8_fgqie"]
 [ext_resource type="Texture2D" uid="uid://d1mg21yed73j8" path="res://assets/characters/enemies/king_pig/hit_sprite.png" id="8_rprdy"]
+[ext_resource type="Texture2D" uid="uid://ds81muqqnik12" path="res://assets/characters/enemies/king_pig/death_sprite.png" id="9_ue3mj"]
 [ext_resource type="Script" path="res://game/characters/enemies/king_pig/scripts/hit.gd" id="15_7ktlh"]
+[ext_resource type="Script" path="res://game/characters/enemies/king_pig/scripts/death.gd" id="17_lgaqp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_276l7"]
 size = Vector2(14, 20)
@@ -240,6 +242,42 @@ tracks/17/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("SpriteController/DeathSprite:frame")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("SpriteController/DeathSprite:flip_h")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("SpriteController/DeathSprite:offset")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_7q611"]
@@ -848,11 +886,93 @@ tracks/3/keys = {
 "values": [Vector2(55, -38)]
 }
 
+[sub_resource type="Animation" id="Animation_t8ohj"]
+resource_name = "death_left"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteController/DeathSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteController/DeathSprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteController/DeathSprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0xrkr"]
+resource_name = "death_right"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteController/DeathSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpriteController/DeathSprite:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteController/DeathSprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t4hkd"]
 _data = {
 "RESET": SubResource("Animation_w0ccw"),
 "attack_left": SubResource("Animation_7q611"),
 "attack_right": SubResource("Animation_2ohat"),
+"death_left": SubResource("Animation_t8ohj"),
+"death_right": SubResource("Animation_0xrkr"),
 "hit_left": SubResource("Animation_lgtwn"),
 "hit_right": SubResource("Animation_oiryr"),
 "idle_left": SubResource("Animation_l1jaj"),
@@ -869,10 +989,11 @@ size = Vector2(14, 20)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_eyhab"]
 radius = 5.42857
 
-[node name="KingPig" type="CharacterBody2D" node_paths=PackedStringArray("animations", "state_machine", "hit_state")]
+[node name="KingPig" type="CharacterBody2D" node_paths=PackedStringArray("death_state", "animations", "state_machine", "hit_state")]
 collision_layer = 4
 collision_mask = 97
 script = ExtResource("1_kerpc")
+death_state = NodePath("StateMachine/Death")
 speed = 60
 animations = NodePath("AnimationPlayer")
 state_machine = NodePath("StateMachine")
@@ -893,6 +1014,7 @@ position = Vector2(0, -14)
 script = ExtResource("2_5u5nd")
 
 [node name="IdleSprite" type="Sprite2D" parent="SpriteController"]
+visible = false
 texture = ExtResource("1_abfk2")
 hframes = 12
 
@@ -911,6 +1033,10 @@ hframes = 5
 visible = false
 texture = ExtResource("8_rprdy")
 hframes = 2
+
+[node name="DeathSprite" type="Sprite2D" parent="SpriteController"]
+texture = ExtResource("9_ue3mj")
+hframes = 4
 
 [node name="HurtBoxComponent" type="Area2D" parent="."]
 collision_layer = 0
@@ -1004,6 +1130,12 @@ chase_state = NodePath("../Chase")
 animation_name = "hit"
 direction = "right"
 sprite = NodePath("../../SpriteController/HitSprite")
+
+[node name="Death" type="Node" parent="StateMachine" node_paths=PackedStringArray("sprite")]
+script = ExtResource("17_lgaqp")
+animation_name = "death"
+direction = "right"
+sprite = NodePath("../../SpriteController/DeathSprite")
 
 [connection signal="death" from="HealthComponent" to="." method="_on_death"]
 [connection signal="health_updated" from="HealthComponent" to="HealthBarComponent" method="update_health"]

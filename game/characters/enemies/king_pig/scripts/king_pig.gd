@@ -2,6 +2,8 @@ class_name KingPig extends Character
 
 @export
 var path: Line2D
+@export
+var death_state: CharacterState
 var start_position
 var end_position
 
@@ -12,4 +14,4 @@ func _ready():
 	super()
 
 func _on_death():
-	queue_free()
+	state_machine.force(death_state)

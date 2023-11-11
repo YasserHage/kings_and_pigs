@@ -273,6 +273,18 @@ tracks/20/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/21/type = "value"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("SpriteController/DeathSprite:offset")
+tracks/21/interp = 1
+tracks/21/loop_wrap = true
+tracks/21/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_gyjue"]
 resource_name = "attack_left"
@@ -811,6 +823,18 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteController/DeathSprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_pyr0w"]
 resource_name = "death_left"
@@ -838,6 +862,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteController/DeathSprite:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-16, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pteus"]
@@ -884,6 +920,7 @@ position = Vector2(0, -15)
 script = ExtResource("2_p8w1e")
 
 [node name="IdleSprite" type="Sprite2D" parent="SpriteController"]
+visible = false
 texture = ExtResource("1_dnid4")
 offset = Vector2(-16, 0)
 flip_h = true
@@ -916,7 +953,6 @@ hframes = 2
 frame = 1
 
 [node name="DeathSprite" type="Sprite2D" parent="SpriteController"]
-visible = false
 texture = ExtResource("9_5hfk2")
 hframes = 4
 
