@@ -1,0 +1,88 @@
+[gd_scene load_steps=11 format=3 uid="uid://df3u0gt3fkvx7"]
+
+[ext_resource type="Script" path="res://game/objects/checkpoint/scripts/checkpoint.gd" id="1_m8ddj"]
+[ext_resource type="Script" path="res://game/common/controllers/sprite_controller.gd" id="2_lw7b7"]
+[ext_resource type="Texture2D" uid="uid://b7p6b00hiw7ka" path="res://assets/objects/checkpoint.png" id="3_owm64"]
+[ext_resource type="Script" path="res://game/common/states/state_machine.gd" id="4_cvltg"]
+[ext_resource type="Script" path="res://game/objects/checkpoint/scripts/inactive.gd" id="5_wui2l"]
+[ext_resource type="Script" path="res://game/objects/checkpoint/scripts/active.gd" id="6_tewnd"]
+
+[sub_resource type="Animation" id="Animation_x2iqg"]
+resource_name = "active"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteController/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_iwtla"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteController/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6bg35"]
+_data = {
+"RESET": SubResource("Animation_iwtla"),
+"active": SubResource("Animation_x2iqg")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xayid"]
+size = Vector2(25, 131)
+
+[node name="Checkpoint" type="Node2D" node_paths=PackedStringArray("animations", "state_machine")]
+script = ExtResource("1_m8ddj")
+animations = NodePath("AnimationPlayer")
+state_machine = NodePath("StateMachine")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6bg35")
+}
+
+[node name="ActivationArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActivationArea"]
+position = Vector2(-11.5, -51.5)
+shape = SubResource("RectangleShape2D_xayid")
+
+[node name="SpriteController" type="Node2D" parent="."]
+script = ExtResource("2_lw7b7")
+
+[node name="Sprite2D" type="Sprite2D" parent="SpriteController"]
+texture = ExtResource("3_owm64")
+hframes = 3
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("4_cvltg")
+starting_state = NodePath("Inactive")
+
+[node name="Inactive" type="Node" parent="StateMachine" node_paths=PackedStringArray("active_state", "activation_area", "sprite")]
+script = ExtResource("5_wui2l")
+active_state = NodePath("../Active")
+activation_area = NodePath("../../ActivationArea")
+sprite = NodePath("../../SpriteController/Sprite2D")
+
+[node name="Active" type="Node" parent="StateMachine" node_paths=PackedStringArray("sprite")]
+script = ExtResource("6_tewnd")
+animation_name = "active"
+sprite = NodePath("../../SpriteController/Sprite2D")

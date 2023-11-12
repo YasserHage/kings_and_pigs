@@ -45,6 +45,7 @@ func processPhysics(delta: float) -> State:
 			moveDirection.x = 0
 			if !onAttackCooldown:
 				_attack()
+		parent.velocity.y += gravity * delta
 		parent.velocity.x = moveDirection.normalized().x * parent.speed * speed_modifier
 		parent.move_and_slide()
 	return null

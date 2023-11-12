@@ -20,5 +20,9 @@ func processFrame(delta: float) -> State:
 		return patrol
 	return null
 	
+func processPhysics(delta: float) -> State:
+	parent.velocity.y += gravity * delta
+	return null
+	
 func on_timeout():
 	should_patrol = true

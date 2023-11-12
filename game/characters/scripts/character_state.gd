@@ -4,7 +4,6 @@ class_name CharacterState extends State
 var animation_name: String
 @export
 var direction: String: set = setDirection, get = getDirection
-var parent: Character: set = setParent
 
 func enter() -> void:
 	reset()
@@ -20,9 +19,6 @@ func processFrame(delta: float) -> State:
 	
 func processPhysics(delta: float) -> State:
 	return null
-
-func setParent(_parent) -> void:
-	parent = _parent
 
 func setDirection(_direction) -> void:
 	direction = _direction

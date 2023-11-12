@@ -2,12 +2,12 @@ extends Node2D
 
 @export
 var player_spawner: SpawnerComponent
+@export
+var all_enemies: SpawnerGroup
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	PlayerEvents.player_death.connect(respawn)
-	player_spawner.spawn()
-	
-func respawn():
-	player_spawner.spawn()
+	GameplayController.set_active_enemies(all_enemies)
+	GameplayController.set_player_spawn(player_spawner)
+	GameplayController.spawn_enemies()
+	GameplayController.spawn_player()
 

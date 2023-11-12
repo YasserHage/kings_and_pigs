@@ -15,9 +15,12 @@ func spawn():
 		instance = scene.instantiate()
 		instance.get_property_list()
 		instance.tree_exiting.connect(_on_instance_death)
-		instance.position = self.position
+		instance.position = self.global_position
+		_set_instance_properties()
 		parent.add_child(instance)
-		
+
+func _set_instance_properties():
+	pass
 	
 func _on_instance_death():
 	active_instance = false

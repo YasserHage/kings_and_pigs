@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dn12m33b6s3kq"]
+[gd_scene load_steps=19 format=3 uid="uid://dn12m33b6s3kq"]
 
 [ext_resource type="Texture2D" uid="uid://d0my64sa6uy66" path="res://assets/tiles/terrain_tileset.png" id="1_p428g"]
 [ext_resource type="Script" path="res://game/maps/main/scripts/world.gd" id="1_q1w8n"]
@@ -7,7 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://boo7bp7g77bhc" path="res://assets/tiles/decorations_tileset.png" id="3_epffa"]
 [ext_resource type="PackedScene" uid="uid://cglu268ld4fa1" path="res://game/gui/gui.tscn" id="4_ilwtv"]
 [ext_resource type="Texture2D" uid="uid://cqhp8st7jw5s" path="res://assets/tiles/spikes_tileset_outline.png" id="4_ysaq8"]
-[ext_resource type="Script" path="res://game/common/components/spawner_component.gd" id="5_hbm0l"]
+[ext_resource type="Script" path="res://game/common/components/spawners/spawner_component.gd" id="5_2yh3a"]
+[ext_resource type="PackedScene" uid="uid://df3u0gt3fkvx7" path="res://game/objects/checkpoint/checkpoint.tscn" id="6_n5c8q"]
+[ext_resource type="Script" path="res://game/common/controllers/spawner_controller.gd" id="7_8yc6i"]
+[ext_resource type="Script" path="res://game/common/components/spawners/enemy_spawner.gd" id="8_wjc3q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g38c8"]
 texture = ExtResource("1_p428g")
@@ -2583,9 +2586,10 @@ size = Vector2(64, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hmxjg"]
 size = Vector2(64, 15)
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("player_spawner")]
+[node name="World" type="Node2D" node_paths=PackedStringArray("player_spawner", "all_enemies")]
 script = ExtResource("1_q1w8n")
-player_spawner = NodePath("SpawnerComponent")
+player_spawner = NodePath("Characters/PlayerSpawn")
+all_enemies = NodePath("Characters/Enemies")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_6mgy0")
@@ -2602,26 +2606,64 @@ layer_1/tile_data = PackedInt32Array(983058, 458752, 4, 655385, 327680, 2, 78645
 
 [node name="Characters" type="Node2D" parent="."]
 
-[node name="KingPig" parent="Characters" node_paths=PackedStringArray("path") instance=ExtResource("3_0176y")]
-position = Vector2(745.091, 96)
-scale = Vector2(1.00049, 1)
-path = NodePath("../../Paths/Path")
+[node name="PlayerSpawn" type="Marker2D" parent="Characters" node_paths=PackedStringArray("parent")]
+position = Vector2(392, 147)
+script = ExtResource("5_2yh3a")
+scene = ExtResource("2_lbny7")
+parent = NodePath("..")
+always_spawn = true
+
+[node name="Enemies" type="Node" parent="Characters"]
+script = ExtResource("7_8yc6i")
+
+[node name="PigSpawn1" type="Marker2D" parent="Characters/Enemies" node_paths=PackedStringArray("path", "parent")]
+position = Vector2(271, 196)
+script = ExtResource("8_wjc3q")
+path = NodePath("../../../Paths/Path1")
+scene = ExtResource("3_0176y")
+parent = NodePath("../..")
+
+[node name="PigSpawn2" type="Marker2D" parent="Characters/Enemies" node_paths=PackedStringArray("path", "parent")]
+position = Vector2(720, 96)
+script = ExtResource("8_wjc3q")
+path = NodePath("../../../Paths/Path2")
+scene = ExtResource("3_0176y")
+parent = NodePath("../..")
+
+[node name="Objects" type="Node2D" parent="."]
+
+[node name="Checkpoint" parent="Objects" instance=ExtResource("6_n5c8q")]
+position = Vector2(542, 131)
 
 [node name="Paths" type="Node2D" parent="."]
 visible = false
 
-[node name="Path" type="Line2D" parent="Paths"]
+[node name="Path1" type="Line2D" parent="Paths"]
+position = Vector2(-550, 114)
+points = PackedVector2Array(575, 89, 655.5, 89, 847, 89)
+width = 2.0
+
+[node name="Path2" type="Line2D" parent="Paths"]
 points = PackedVector2Array(575, 89, 745, 89)
 width = 2.0
 
 [node name="Collisions" type="Node2D" parent="."]
 
-[node name="EnemyCollisions" type="StaticBody2D" parent="Collisions"]
+[node name="EnemyCollisions1" type="StaticBody2D" parent="Collisions"]
+position = Vector2(302, 199)
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/EnemyCollisions1"]
+position = Vector2(0, -4)
+shape = SubResource("SegmentShape2D_0bn7w")
+
+[node name="EnemyCollisions2" type="StaticBody2D" parent="Collisions"]
 position = Vector2(563, 86)
 collision_layer = 32
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/EnemyCollisions"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/EnemyCollisions2"]
 position = Vector2(0, -4)
 shape = SubResource("SegmentShape2D_0bn7w")
 
@@ -2638,9 +2680,3 @@ position = Vector2(-128, 48.5)
 shape = SubResource("RectangleShape2D_hmxjg")
 
 [node name="GUI" parent="." instance=ExtResource("4_ilwtv")]
-
-[node name="SpawnerComponent" type="Marker2D" parent="." node_paths=PackedStringArray("parent")]
-position = Vector2(526, 126)
-script = ExtResource("5_hbm0l")
-scene = ExtResource("2_lbny7")
-parent = NodePath("../Characters")

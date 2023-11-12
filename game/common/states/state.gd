@@ -3,6 +3,7 @@ class_name State extends Node
 @export
 var sprite: Sprite2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var parent: set = setParent
 
 func enter() -> void:
 	pass
@@ -26,7 +27,7 @@ func reset() -> void:
 	refreshSprite()
 	
 func setParent(_parent) -> void:
-	pass
+	parent = _parent
 	
 func setDirection(value) -> void:
 	pass

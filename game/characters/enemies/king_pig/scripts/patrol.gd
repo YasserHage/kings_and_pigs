@@ -10,6 +10,7 @@ func processPhysics(delta: float) -> State:
 	if abs(moveDirection.x) < 1.5:
 		changeTargets()
 		return idle_state
+	parent.velocity.y += gravity * delta
 	parent.velocity.x = moveDirection.normalized().x * parent.speed
 	parent.move_and_slide()
 	return null

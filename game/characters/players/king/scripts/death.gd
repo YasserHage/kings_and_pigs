@@ -12,6 +12,6 @@ func enter() -> void:
 
 func processFrame(delta: float) -> State:
 	if !parent.animations.is_playing():
-		PlayerEvents.player_death.emit()
 		parent.queue_free()
+		PlayerEvents.player_death.emit()
 	return null
