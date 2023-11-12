@@ -4,6 +4,10 @@ extends Node2D
 var animations: AnimationPlayer
 @export
 var state_machine: StateMachine
+@export
+var player_spawn: SpawnerComponent
+@export
+var checkpoint_enemies: SpawnerGroup
 
 func  _ready():
 	state_machine.init(self)

@@ -2607,7 +2607,7 @@ layer_1/tile_data = PackedInt32Array(983058, 458752, 4, 655385, 327680, 2, 78645
 [node name="Characters" type="Node2D" parent="."]
 
 [node name="PlayerSpawn" type="Marker2D" parent="Characters" node_paths=PackedStringArray("parent")]
-position = Vector2(392, 147)
+position = Vector2(41, 189)
 script = ExtResource("5_2yh3a")
 scene = ExtResource("2_lbny7")
 parent = NodePath("..")
@@ -2623,17 +2623,22 @@ path = NodePath("../../../Paths/Path1")
 scene = ExtResource("3_0176y")
 parent = NodePath("../..")
 
-[node name="PigSpawn2" type="Marker2D" parent="Characters/Enemies" node_paths=PackedStringArray("path", "parent")]
+[node name="CheckpointEnemies" type="Node" parent="Characters/Enemies"]
+script = ExtResource("7_8yc6i")
+
+[node name="PigSpawn2" type="Marker2D" parent="Characters/Enemies/CheckpointEnemies" node_paths=PackedStringArray("path", "parent")]
 position = Vector2(720, 96)
 script = ExtResource("8_wjc3q")
-path = NodePath("../../../Paths/Path2")
+path = NodePath("../../../../Paths/Path2")
 scene = ExtResource("3_0176y")
-parent = NodePath("../..")
+parent = NodePath("../../..")
 
 [node name="Objects" type="Node2D" parent="."]
 
-[node name="Checkpoint" parent="Objects" instance=ExtResource("6_n5c8q")]
-position = Vector2(542, 131)
+[node name="Checkpoint" parent="Objects" node_paths=PackedStringArray("player_spawn", "checkpoint_enemies") instance=ExtResource("6_n5c8q")]
+position = Vector2(411, 146)
+player_spawn = NodePath("../../Characters/PlayerSpawn")
+checkpoint_enemies = NodePath("../../Characters/Enemies/CheckpointEnemies")
 
 [node name="Paths" type="Node2D" parent="."]
 visible = false
