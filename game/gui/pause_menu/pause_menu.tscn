@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://csjsp78f6wcjr"]
+
+[ext_resource type="Texture2D" uid="uid://cjtmcmgkwmryo" path="res://assets/ui/nine_patch/nine_patch_tex.png" id="1_2rxp1"]
+[ext_resource type="Script" path="res://game/gui/pause_menu/scripts/pause_menu.gd" id="1_y8dnh"]
+[ext_resource type="Texture2D" uid="uid://dgieg0mi3mlhl" path="res://assets/ui/button/button_default.png" id="2_mkgvk"]
+[ext_resource type="Texture2D" uid="uid://bkgiajv0cpw7d" path="res://assets/ui/button/button_press.png" id="3_r0a84"]
+[ext_resource type="Texture2D" uid="uid://d30b57od24ukh" path="res://assets/ui/button/button_hover.png" id="4_b1d35"]
+[ext_resource type="Script" path="res://game/gui/pause_menu/scripts/continue_button.gd" id="6_06508"]
+[ext_resource type="Texture2D" uid="uid://dtj5a83umo3ku" path="res://assets/ui/button/continue/button_default_outline.png" id="7_vvbw8"]
+[ext_resource type="Texture2D" uid="uid://dpisbbdrxci2j" path="res://assets/ui/button/continue/button_press_outline.png" id="8_i7tee"]
+[ext_resource type="Texture2D" uid="uid://mi6thkqw52d1" path="res://assets/ui/button/continue/button_hover_outline.png" id="9_t4hl2"]
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_y8dnh")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_right = 186.0
+offset_bottom = 191.0
+texture = ExtResource("1_2rxp1")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="ContinueButton" type="TextureButton" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 26.0
+offset_right = 165.0
+offset_bottom = 67.0
+texture_normal = ExtResource("7_vvbw8")
+texture_pressed = ExtResource("8_i7tee")
+texture_hover = ExtResource("9_t4hl2")
+script = ExtResource("6_06508")
+
+[node name="SaveLoadButton" type="TextureButton" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 71.0
+offset_right = 165.0
+offset_bottom = 112.0
+texture_normal = ExtResource("7_vvbw8")
+texture_pressed = ExtResource("8_i7tee")
+texture_hover = ExtResource("9_t4hl2")
+
+[node name="OptionsButton" type="TextureButton" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.5
+offset_top = 150.0
+offset_right = 19.5
+offset_bottom = 160.0
+grow_horizontal = 2
+texture_normal = ExtResource("2_mkgvk")
+texture_pressed = ExtResource("3_r0a84")
+texture_hover = ExtResource("4_b1d35")
+
+[node name="QuitButton" type="TextureButton" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -16.5
+offset_top = 172.0
+offset_right = 19.5
+offset_bottom = 182.0
+grow_horizontal = 2
+texture_normal = ExtResource("2_mkgvk")
+texture_pressed = ExtResource("3_r0a84")
+texture_hover = ExtResource("4_b1d35")

@@ -11,3 +11,9 @@ func _ready():
 	GameplayController.spawn_enemies()
 	GameplayController.spawn_player()
 
+func _input(event):
+	if event.is_action_pressed("pause"):
+		var isPaused = get_tree().paused
+		GameplayController.game_paused.emit(!isPaused)
+		get_tree().paused = !isPaused
+

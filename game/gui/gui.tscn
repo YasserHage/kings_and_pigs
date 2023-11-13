@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://cglu268ld4fa1"]
+[gd_scene load_steps=6 format=3 uid="uid://cglu268ld4fa1"]
 
+[ext_resource type="Script" path="res://game/gui/scripts/gui.gd" id="1_0icym"]
 [ext_resource type="Script" path="res://game/gui/player_stats.gd" id="1_1ckbd"]
 [ext_resource type="Texture2D" uid="uid://qwrwyb8t4blr" path="res://assets/ui/player_stats/player_life_icon.png" id="1_dyel7"]
 [ext_resource type="PackedScene" uid="uid://ktdtphi6aw0h" path="res://game/common/components/health_bar/health_bar.tscn" id="2_lbbpj"]
+[ext_resource type="PackedScene" uid="uid://csjsp78f6wcjr" path="res://game/gui/pause_menu/pause_menu.tscn" id="4_odmkn"]
 
-[node name="GUI" type="CanvasLayer"]
+[node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("pause_menu")]
+script = ExtResource("1_0icym")
+pause_menu = NodePath("PauseMenu")
 
 [node name="PlayerStats" type="Panel" parent="."]
 offset_left = 8.0
@@ -24,3 +28,17 @@ offset_left = 15.0
 offset_top = 7.0
 offset_right = 45.0
 offset_bottom = 11.0
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_odmkn")]
+process_mode = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 38.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2

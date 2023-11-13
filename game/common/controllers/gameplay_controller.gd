@@ -1,5 +1,7 @@
 extends Node
 
+signal game_paused(is_paused: bool)
+
 var player_spawn: SpawnerComponent: set = set_player_spawn
 var active_enemies: SpawnerGroup: set = set_active_enemies
 
