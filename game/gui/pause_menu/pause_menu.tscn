@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://csjsp78f6wcjr"]
+[gd_scene load_steps=13 format=3 uid="uid://csjsp78f6wcjr"]
 
 [ext_resource type="Texture2D" uid="uid://cjtmcmgkwmryo" path="res://assets/ui/nine_patch/nine_patch_tex.png" id="1_2rxp1"]
 [ext_resource type="Script" path="res://game/gui/pause_menu/scripts/pause_menu.gd" id="1_y8dnh"]
@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://dpisbbdrxci2j" path="res://assets/ui/button/continue/continue_button_press.png" id="4_ssbrs"]
 [ext_resource type="Texture2D" uid="uid://643qpk15rjv3" path="res://assets/ui/button/continue/continue_button_hover.png" id="5_0w038"]
 [ext_resource type="Script" path="res://game/gui/pause_menu/scripts/continue_button.gd" id="6_06508"]
+[ext_resource type="Texture2D" uid="uid://co8v82d3yq6xc" path="res://assets/ui/button/quit/quit_button_default.png" id="10_c4cgt"]
+[ext_resource type="Texture2D" uid="uid://bsmivrmfpq5kr" path="res://assets/ui/button/quit/quit_button_press.png" id="11_urvbp"]
+[ext_resource type="Texture2D" uid="uid://q5i7rgmo0ur1" path="res://assets/ui/button/quit/quit_button_hover.png" id="12_s6yhl"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -55,10 +58,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -16.5
-offset_top = 150.0
-offset_right = 19.5
-offset_bottom = 160.0
+offset_left = -14.0
+offset_top = 8.0
+offset_right = 22.0
+offset_bottom = 18.0
 grow_horizontal = 2
 texture_normal = ExtResource("2_mkgvk")
 texture_pressed = ExtResource("3_r0a84")
@@ -69,11 +72,11 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -16.5
-offset_top = 172.0
-offset_right = 19.5
-offset_bottom = 182.0
+offset_left = -72.0
+offset_top = 117.0
+offset_right = 73.0
+offset_bottom = 158.0
 grow_horizontal = 2
-texture_normal = ExtResource("2_mkgvk")
-texture_pressed = ExtResource("3_r0a84")
-texture_hover = ExtResource("4_b1d35")
+texture_normal = ExtResource("10_c4cgt")
+texture_pressed = ExtResource("11_urvbp")
+texture_hover = ExtResource("12_s6yhl")
