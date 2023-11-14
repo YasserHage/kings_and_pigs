@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpisbbdrxci2j"
-path="res://.godot/imported/button_press_outline.png-77c3a942b03b57c5b469f0580d5c84ba.ctex"
+uid="uid://dtj5a83umo3ku"
+path="res://.godot/imported/continue_button_default.png-fd099d536fa75a59f56d53cbff5d3f27.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/button/continue/button_press_outline.png"
-dest_files=["res://.godot/imported/button_press_outline.png-77c3a942b03b57c5b469f0580d5c84ba.ctex"]
+source_file="res://assets/ui/button/continue/continue_button_default.png"
+dest_files=["res://.godot/imported/continue_button_default.png-fd099d536fa75a59f56d53cbff5d3f27.ctex"]
 
 [params]
 

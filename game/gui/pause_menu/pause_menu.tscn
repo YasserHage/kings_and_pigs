@@ -3,12 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://cjtmcmgkwmryo" path="res://assets/ui/nine_patch/nine_patch_tex.png" id="1_2rxp1"]
 [ext_resource type="Script" path="res://game/gui/pause_menu/scripts/pause_menu.gd" id="1_y8dnh"]
 [ext_resource type="Texture2D" uid="uid://dgieg0mi3mlhl" path="res://assets/ui/button/button_default.png" id="2_mkgvk"]
+[ext_resource type="Texture2D" uid="uid://dtj5a83umo3ku" path="res://assets/ui/button/continue/continue_button_default.png" id="3_p3bv8"]
 [ext_resource type="Texture2D" uid="uid://bkgiajv0cpw7d" path="res://assets/ui/button/button_press.png" id="3_r0a84"]
 [ext_resource type="Texture2D" uid="uid://d30b57od24ukh" path="res://assets/ui/button/button_hover.png" id="4_b1d35"]
+[ext_resource type="Texture2D" uid="uid://dpisbbdrxci2j" path="res://assets/ui/button/continue/continue_button_press.png" id="4_ssbrs"]
+[ext_resource type="Texture2D" uid="uid://643qpk15rjv3" path="res://assets/ui/button/continue/continue_button_hover.png" id="5_0w038"]
 [ext_resource type="Script" path="res://game/gui/pause_menu/scripts/continue_button.gd" id="6_06508"]
-[ext_resource type="Texture2D" uid="uid://dtj5a83umo3ku" path="res://assets/ui/button/continue/button_default_outline.png" id="7_vvbw8"]
-[ext_resource type="Texture2D" uid="uid://dpisbbdrxci2j" path="res://assets/ui/button/continue/button_press_outline.png" id="8_i7tee"]
-[ext_resource type="Texture2D" uid="uid://mi6thkqw52d1" path="res://assets/ui/button/continue/button_hover_outline.png" id="9_t4hl2"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -35,9 +35,9 @@ offset_left = 20.0
 offset_top = 26.0
 offset_right = 165.0
 offset_bottom = 67.0
-texture_normal = ExtResource("7_vvbw8")
-texture_pressed = ExtResource("8_i7tee")
-texture_hover = ExtResource("9_t4hl2")
+texture_normal = ExtResource("3_p3bv8")
+texture_pressed = ExtResource("4_ssbrs")
+texture_hover = ExtResource("5_0w038")
 script = ExtResource("6_06508")
 
 [node name="SaveLoadButton" type="TextureButton" parent="NinePatchRect"]
@@ -46,9 +46,9 @@ offset_left = 20.0
 offset_top = 71.0
 offset_right = 165.0
 offset_bottom = 112.0
-texture_normal = ExtResource("7_vvbw8")
-texture_pressed = ExtResource("8_i7tee")
-texture_hover = ExtResource("9_t4hl2")
+texture_normal = ExtResource("3_p3bv8")
+texture_pressed = ExtResource("4_ssbrs")
+texture_hover = ExtResource("5_0w038")
 
 [node name="OptionsButton" type="TextureButton" parent="NinePatchRect"]
 layout_mode = 1
