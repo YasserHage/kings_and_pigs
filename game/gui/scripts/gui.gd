@@ -1,7 +1,9 @@
 extends CanvasLayer
 
-@export
-var pause_menu: Control
+@onready
+var pause_menu = $PauseMenu
+@onready
+var player_stats = $PlayerStats
 
 func _ready():
 	pause_menu.visible = false

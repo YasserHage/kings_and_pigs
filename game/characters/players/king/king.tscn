@@ -915,6 +915,9 @@ animations = NodePath("AnimationPlayer")
 state_machine = NodePath("StateMachine")
 hit_state = NodePath("StateMachine/Hit")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2.5, 2.5)
+
 [node name="SpriteController" type="Node2D" parent="."]
 position = Vector2(0, -15)
 script = ExtResource("2_p8w1e")
@@ -1056,9 +1059,6 @@ detection_area = NodePath("../../DetectionArea")
 animation_name = "death"
 direction = "right"
 sprite = NodePath("../../SpriteController/DeathSprite")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
 
 [connection signal="death" from="HealthComponent" to="." method="_on_death"]
 [connection signal="health_updated" from="HealthComponent" to="." method="_on_health_component_health_updated"]
